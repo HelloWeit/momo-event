@@ -88,19 +88,4 @@ public class AkkaService implements InitializingBean {
         }
         return ref;
     }
-
-    public ActorRef consistentHashingPool(Props props, String name, int size) {
-        ActorPath actorPath = system.child(name);
-        Timeout timeout = new Timeout(Duration.create(TIME_OUT, TimeUnit.SECONDS));
-        // 判断actor是否创建
-        ActorSelection actorSelection = system.actorSelection(actorPath);
-        Future<ActorRef> f = actorSelection.resolveOne(timeout);
-        ActorRef ref;
-        try {
-            ref = Await.result(f, timeout.duration());
-        } catch (Exception ex) {
-            ref = system.actorOf(new ConsistentHashingPool(size).props(props), name);
-        }
-        return ref;
-    }
 }

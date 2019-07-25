@@ -37,7 +37,6 @@ public class EventCenter implements InitializingBean {
     }
 
 
-
     @Override
     public void afterPropertiesSet() throws Exception {
         EventActor eventActor = new EventActor(this);

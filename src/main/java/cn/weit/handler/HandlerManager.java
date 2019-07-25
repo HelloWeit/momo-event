@@ -10,6 +10,7 @@ import java.util.Map;
 
 /**
  * @author weitong
+ *  事件和handler的映射关系建议放在数据库中，启动时候记载到内存
  */
 @Component
 public class HandlerManager {
